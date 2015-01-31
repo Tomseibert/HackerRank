@@ -1,5 +1,7 @@
 __author__ = 'tom'
 
+import itertools
+
 maxTopics = 500
 maxPeople = 500
 
@@ -26,6 +28,20 @@ def maxTopics(peopleList):
     # need to count the on bits not the total number..
     return bitsOn
 
+def maxTeams(peopleList,maxTopic):
+
+    count = len(peopleList)
+
+    teams = 0
+
+    for x,y in itertools.combinations(peopleList,2):
+            maxTop = int(x,2) | int(y,2)
+            bitsCount = bin(maxTop).count("1")
+            if bitsCount == maxTopic:
+                teams += 1
+
+    return teams
+
 # Main
 
 # get total number of people and topics
@@ -35,6 +51,8 @@ inBuf = raw_input()
 peopleList = [raw_input() for _ in range(0,int(people))]
 peopleList.sort()
 #print peopleList
-max = maxTopics(peopleList)
+maxTop = maxTopics(peopleList)
+teams = maxTeams(peopleList,maxTop)
 
-print max
+print maxTop
+print teams
