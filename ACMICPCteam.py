@@ -12,10 +12,19 @@ def teamCount():
 def maxTopics(peopleList):
     # this is a bad way to compare the two. Need to check all against all.
     # this could result in a very long processing time
-    maxTop = int(peopleList[-1],2) | int(peopleList[-2],2)
+    bitsOn = 0
+    count = len(peopleList)
+    for i in range(0,count):
+        for j in range(0,count):
+            maxTop = int(peopleList[i],2) | int(peopleList[j],2)
+            bitsCheck = bin(maxTop).count("1")
+            if bitsCheck > bitsOn:
+                bitsOn = bitsCheck
+
+
 
     # need to count the on bits not the total number..
-    return maxTop
+    return bitsOn
 
 # Main
 
@@ -28,4 +37,4 @@ peopleList.sort()
 #print peopleList
 max = maxTopics(peopleList)
 
-print bin(max)
+print max
