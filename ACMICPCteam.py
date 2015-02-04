@@ -49,7 +49,7 @@ inBuf = raw_input()
 (people,topics) = inBuf.split()
 
 peopleList = [raw_input() for _ in range(0,int(people))]
-peopleList.sort()
+#peopleList.sort()
 #print peopleList
 maxTop = maxTopics(peopleList)
 teams = maxTeams(peopleList,maxTop)
